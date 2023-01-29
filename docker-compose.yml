@@ -1,25 +1,23 @@
 version: '3'
 services:
   marklog_backend_container:
-    image: marklog_backend
     build:
-      context: .
-      dockerfile: ./compose/django/Dockerfile-dev
-    environment:
-      - DJANGO_DEBUG=True
-      - DJANGO_DB_HOST=db
-      - DJANGO_DB_PORT=5432
-      - DJANGO_DB_NAME=sampledb
-      - DJANGO_DB_USERNAME=sampleuser
-      - DJANGO_DB_PASSWORD=samplesecret
-      - DJANGO_SECRET_KEY=dev_secret_key
-    command: 
-      - python manage.py runserver 0:8000
-    volumes:
-      - ./:/app/
+      context: ./marklog-backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "7777:8080"
+    networks:
+      - marklog-network
   marklog_frontend_container:
-    image: nginx:latest
+    build:
+      context: ./marklog-frontend
+      dockerfile: ./Dockerfile
     ports:
     - "8000:80"
+    networks:
+      - marklog-network
     depends_on:
       - marklog_backend_container
+
+networks:
+  marklog-network:
