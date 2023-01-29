@@ -1,0 +1,6 @@
+[submodule "marklog-frontend"]
+	path = marklog-frontend
+	url = https://github.com/padomay1352/marklog-frontend.git
+[submodule "marklog-backend"]
+	path = marklog-backend
+	url = https://github.com/padomay1352/marklog-backend.git
