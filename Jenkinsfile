@@ -61,7 +61,6 @@ node{
         remote.password = identity
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
-            sshCommand remote: remote, command: 'echo azcom@31337D | docker login -u padomay1352 --password-stdin'
             sshCommand remote: remote, command: 'docker-compose up -d --build'
         }
     }
