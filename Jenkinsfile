@@ -7,6 +7,13 @@ pipeline{
 	}
 
 	stages {
+        def remote = [:]
+        remote.name = 'marklog-was'
+        remote.host = 'marklog.kro.kr'
+        remote.user = '$DOCKERHUB_CREDENTIALS_USR'
+        remote.password = '$DOCKERHUB_CREDENTIALS_PSW'
+        remote.allowAnyHosts = true
+
         stage('Git submodule update'){
             steps{
                 sh 'git submodule init'
@@ -34,13 +41,6 @@ pipeline{
 				sh 'docker push padomay1352/marklog_backend:latest'
 			}
 		}
-
-        def remote = [:]
-        remote.name = 'marklog-was'
-        remote.host = 'marklog.kro.kr'
-        remote.user = '$DOCKERHUB_CREDENTIALS_USR'
-        remote.password = '$DOCKERHUB_CREDENTIALS_PSW'
-        remote.allowAnyHosts = true
 
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
