@@ -54,7 +54,7 @@ node{
     remote.name = 'marklog-was'
     remote.host = 'marklog.kro.kr'
     remote.allowAnyHosts = true
-    withCredentials([usernamePassword(credentialsId: 'azurewas_ssh', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+    withCredentials(binding: [certificate(credentialsId: 'azurewas_ssh', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = identity
         stage('Remote SSH') {
