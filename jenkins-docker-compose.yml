@@ -1,12 +1,9 @@
 version: '3'
 services:
-  marklog_backend_container:
+  jenkins_container:
     image: jenkins/jenkins:lts
     ports:
       - 8080:8080
     user: root
     volumes:
       - /home/azure/jenkins_home:/var/jenkins_home
-
-networks:
-  marklog-network:
