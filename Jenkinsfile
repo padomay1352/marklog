@@ -51,7 +51,7 @@ pipeline{
 node{
     def remote = [:]
     account = credentials('dk')
-    console.log(account)
+    print(account)
     remote.name = 'marklog-was'
     remote.host = 'marklog.kro.kr'
     remote.user = 'azurewas'
