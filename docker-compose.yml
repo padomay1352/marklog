@@ -13,6 +13,7 @@ services:
     ports:
     - 80:80
     - 443:443
+    - 8989:8989
     environment:
       - CERTBOT_EMAIL=padomay1352@gmail.com
     volumes:
@@ -25,4 +26,3 @@ services:
 
 networks:
   marklog-network:
-  
