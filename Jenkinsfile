@@ -7,11 +7,16 @@ pipeline{
 	}
 
 	stages {
+        stage('Git submodule update'){
+            sh 'git submodule init'
+            sh 'git submodule update --remote'
+        }
 
-		stage('Build') {
+		stage('Build frontend & backend') {
 
 			steps {
-				sh 'docker build -t padomay1352/marklog:latest .'
+				sh 'docker build -t padomay1352/marklog_frontend:latest ./marklog-frontend'
+				sh 'docker build -t padomay1352/marklog_backend:latest ./marklog_backend'
 			}
 		}
 
@@ -23,9 +28,13 @@ pipeline{
 		}
 		stage('Push') {
 			steps {
-				sh 'docker push padomay1352/marklog:latest'
+				sh 'docker push padomay1352/marklog_frontend:latest'
+				sh 'docker push padomay1352/marklog_backend:latest'
 			}
 		}
+        stage('Send ssh'){
+
+        }
 	}
 	post {
 		always {
