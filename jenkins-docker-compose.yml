@@ -1,6 +1,9 @@
 version: '3'
 services:
   jenkins_container:
+    build:
+      context: ./
+    restart: unless-stopped
     image: jenkins/jenkins:lts-jdk11
     ports:
       - 8080:8080
