@@ -60,6 +60,7 @@ node{
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
             sshPut remote: remote, from: 'user_conf.d', into: '.'
+            sshCommand remote: remote, command: 'docker-compose pull'
             sshCommand remote: remote, command: 'docker-compose up -d --build'
         }
     }
