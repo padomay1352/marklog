@@ -35,20 +35,24 @@ pipeline{
 			}
 		}
 
-        def remote = [:]
-        remote.name = 'marklog-was'
-        remote.host = 'marklog.kro.kr'
-        remote.user = 'azurewas'
-        remote.password = 'azcom@31337D'
-        remote.allowAnyHosts = true
-        stage('Remote SSH') {
-            writeFile file: 'abc.sh', text: 'ls -lrt'
-            sshPut remote: remote, from: 'abc.sh', into: '.'
-        }
-        }
         post {
             always {
                 sh 'docker logout'
             }
         }
+    }
+}
+
+node{
+    def remote = [:]
+    remote.name = 'marklog-was'
+    remote.host = 'marklog.kro.kr'
+    remote.user = 'azurewas'
+    remote.password = 'azcom@31337D'
+    remote.allowAnyHosts = true
+
+    stage('Remote SSH') {
+        writeFile file: 'abc.sh', text: 'ls -lrt'
+        sshPut remote: remote, from: 'abc.sh', into: '.'
+    }
 }
