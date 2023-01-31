@@ -54,8 +54,10 @@ node{
     remote.name = 'marklog-was'
     remote.host = 'marklog.kro.kr'
     remote.allowAnyHosts = true
-    withCredentials([sshUserPrivateKey(credentialsId: 'azurewas_ssh', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+    withCredentials([sshUserPrivateKey(credentialsId: 'azurewas_ssh', keyFileVariable: 'identity', passphraseVariable: 'ppv', usernameVariable: 'userName')]) {
         remote.user = userName
+        print(identity)
+        print(ppv)
         remote.password = identity
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
