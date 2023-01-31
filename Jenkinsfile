@@ -44,9 +44,7 @@ pipeline{
             sh 'docker logout'
         }
     }
-}
-
-node{
+    node{
     def remote = [:]
     remote.name = 'marklog-was'
     remote.host = 'marklog.kro.kr'
@@ -59,3 +57,5 @@ node{
         sshCommand remote: remote, command: 'docker-compose up -d --build'
     }
 }
+}
+
