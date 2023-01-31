@@ -1,9 +1,10 @@
 version: '3'
 services:
   jenkins_container:
-    image: jenkins/jenkins:lts
+    image: h1kkan/jenkins-docker:lts
     ports:
       - 8080:8080
     user: root
     volumes:
       - /home/azure_jenkins/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
