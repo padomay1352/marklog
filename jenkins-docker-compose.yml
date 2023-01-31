@@ -6,4 +6,4 @@ services:
       - 8080:8080
     user: root
     volumes:
-      - /home/azure/jenkins_home:/var/jenkins_home
+      - /home/azure_jenkins/jenkins_home:/var/jenkins_home
