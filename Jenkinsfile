@@ -59,7 +59,7 @@ node{
         remote.password = ppv
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
-            sshCommand remote: remote, command: 'docker-compose up -d --build'
+            sshCommand remote: remote, command: 'docker-compose up -d'
         }
     }
 }
