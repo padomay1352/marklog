@@ -2,6 +2,7 @@ version: '3'
 services:
   marklog_backend_container:
     image: padomay1352/marklog_backend
+    restart: always
     networks:
       - marklog-network
   marklog_frontend_container:
@@ -9,12 +10,12 @@ services:
     ports:
     - 80:80
     - 443:443
-    - 888:888
     environment:
       - CERTBOT_EMAIL=padomay1352@gmail.com
     volumes:
-      - ./user_conf.d:/etc/nginx/user_conf.d
+      - ./user_conf.d:x/etc/nginx/user_conf.d
       - ./letsencrypt:/etc/letsencrypt
+    restart: always
     networks:
       - marklog-network
     depends_on:
