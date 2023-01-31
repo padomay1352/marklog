@@ -56,9 +56,7 @@ node{
     remote.allowAnyHosts = true
     withCredentials([sshUserPrivateKey(credentialsId: 'azurewas_ssh', keyFileVariable: 'identity', passphraseVariable: 'ppv', usernameVariable: 'userName')]) {
         remote.user = userName
-        print(identity)
-        print(ppv)
-        remote.password = identity
+        remote.password = ppv
         stage('Remote SSH') {
             sshPut remote: remote, from: 'docker-compose.yml', into: '.'
             sshCommand remote: remote, command: 'docker-compose up -d --build'
