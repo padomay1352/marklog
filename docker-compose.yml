@@ -14,7 +14,7 @@ services:
       - CERTBOT_EMAIL=padomay1352@gmail.com
     volumes:
       - ./user_conf.d:/etc/nginx/user_conf.d
-      - ./nginx_secrets:/etc/letsencrypt
+      - ./letsencrypt:/etc/letsencrypt
     networks:
       - marklog-network
     depends_on:
