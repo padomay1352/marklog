@@ -1,15 +1,11 @@
 version: '3'
 services:
   marklog_backend_container:
-    build:
-      context: ./marklog-backend
-      dockerfile: ./Dockerfile
+    image: padomay1352/marklog-backend
     networks:
       - marklog-network
   marklog_frontend_container:
-    build:
-      context: ./marklog-frontend
-      dockerfile: ./Dockerfile
+    image: padomay1352/marklog-frontend
     ports:
     - 80:80
     - 443:443
