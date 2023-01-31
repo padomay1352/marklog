@@ -44,6 +44,7 @@ pipeline{
             sh 'docker logout'
         }
     }
+    
     node{
         def remote = [:]
         remote.name = 'marklog-was'
