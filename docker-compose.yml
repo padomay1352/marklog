@@ -1,11 +1,11 @@
 version: '3'
 services:
   marklog_backend_container:
-    image: padomay1352/marklog-backend
+    image: padomay1352/marklog_backend
     networks:
       - marklog-network
   marklog_frontend_container:
-    image: padomay1352/marklog-frontend
+    image: padomay1352/marklog_frontend
     ports:
     - 80:80
     - 443:443

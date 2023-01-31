@@ -35,25 +35,23 @@ pipeline{
 			}
 		}
 
+        def remote = [:]
+        remote.name = 'marklog-was'
+        remote.host = 'marklog.kro.kr'
+        remote.user = '$DOCKERHUB_CREDENTIALS_USR'
+        remote.password = '$DOCKERHUB_CREDENTIALS_PSW'
+        remote.allowAnyHosts = true
+
+        stage('Remote SSH') {
+            sshPut remote: remote, from: 'docker-compose.yml', into: '.'
+            sshCommand remote: remote, command: 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            sshCommand remote: remote, command: 'docker-compose up -d --build'
+        }
 
     }
     post {
         always {
             sh 'docker logout'
         }
-    }
-}
-
-node{
-    def remote = [:]
-    remote.name = 'marklog-was'
-    remote.host = 'marklog.kro.kr'
-    remote.user = 'azurewas'
-    remote.password = 'azcom@31337D'
-    remote.allowAnyHosts = true
-
-    stage('Remote SSH') {
-        sshPut remote: remote, from: 'docker-compose.yml', into: '.'
-        sshCommand remote: remote, command: "docker-compose up -d --build"
     }
 }
