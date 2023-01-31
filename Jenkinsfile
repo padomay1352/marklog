@@ -18,7 +18,7 @@ pipeline{
 		stage('Build frontend & backend') {
 			steps {
 				sh 'docker build -t padomay1352/marklog_frontend:latest ./marklog-frontend'
-				sh 'docker build -t padomay1352/marklog_backend:latest ./marklog_backend'
+				sh 'docker build -t padomay1352/marklog_backend:latest ./marklog-backend'
 			}
 		}
 
